@@ -1,57 +1,75 @@
 # CYD-MJPEG-Player
 
-An expanded and enhanced version of The Last Outpost Workshop's ESP32-2432S028 video player, adding a touch-controlled interface, video library, playback modes and more.
+An expanded and enhanced version of [The Last Outpost Workshop's ESP32-2432S028 video player](https://github.com/thelastoutpostworkshop/esp32-2432S028_video_player), adding a touch-controlled interface, video library, playback modes and more.
 
-**Author:** DMPumuki ([GitHub profile](https://github.com/tancredyo1990-ship-it))
+Created and modified by [DMPumuki](https://github.com/tancredyo1990-ship-it).
 
-## Overview
+## Screenshots
 
-CYD MJPEG Player is an enhanced version of the original MJPEG video player developed by **[The Last Outpost Workshop](https://github.com/thelastoutpostworkshop)** for the ESP32-2432S028 Cheap Yellow Display (CYD).
+Here are some screenshots showing the interface and features of CYD MJPEG Player.
 
-The original project provides MJPEG video playback using videos converted with an online tool. This version expands the original player with touch controls, an interactive video library, configurable playback modes and additional settings.
+### Main Menu
 
-## Requirements and Important Notes
+![Main Menu](mainmenu.jpg)
 
-- **Compatible hardware:** ESP32-2432S028 CYD with an ILI9341 display controller.
-- **Touchscreen input:** A stylus pen is recommended for easier and more precise interaction with the interface.
-- **Video format:** Videos must be converted to the supported MJPEG format before being copied to the microSD card.
-- **No audio:** Video playback is silent. Audio is not supported.
-- **microSD format:** The microSD card must be formatted using the FAT32 file system.
-- **Video location:** MJPEG files must be placed inside a folder named `mjpeg` in the root directory of the card.
+### Playback Options
 
-## Features
-
-### Video Playback
-
-- **Touch brightness control:** Slide your finger vertically across the screen to adjust the display brightness during playback.
-- **Next video:** Tap the right side of the screen to display a "Next video" notification and skip to the next video.
-- **Previous video:** Tap the left side of the screen to display a "Previous video" notification and return to the previous video.
-- **Return to main menu:** A downward arrow HUD button allows you to return to the main menu during playback.
-- **Configurable HUD:** Enable or disable the return arrow from the settings menu.
-
-### Playback Modes
-
-The main menu provides three playback options:
-
-- **Sequential:** Play videos in order. The playback logic is designed to return to the first video after reaching the end of the list.
-- **Random:** Play videos in a shuffled order. The list is shuffled again after each complete cycle.
-- **Repeat:** Continuously repeat the same video.
+![Playback Options](Playoptions.jpg)
 
 ### Video Library
 
-The video library provides a visual overview of the videos stored on the microSD card.
+![Video Library](Library.jpg)
 
-- Displays thumbnail previews of six videos per page.
-- Shows each video's filename and file size.
-- Touch a video preview to play it.
-- Access individual video information.
+### Video Information
+
+![Video Information](Info.jpg)
+
+### Video Navigation
+
+![Next Video](Nextvideo.jpg)
 
 ### Settings
 
-The settings menu provides:
+![Settings](Settings.jpg)
 
-- Display brightness adjustment.
-- Enable or disable the return arrow HUD displayed during video playback.
+## Features
+
+### Touch-Controlled Playback
+
+- Swipe vertically along the screen to adjust brightness while a video is playing.
+- Tap the right side of the screen to skip to the next video.
+- Tap the left side of the screen to return to the previous video.
+- An on-screen arrow (HUD) allows you to return to the main menu during playback.
+- The playback navigation arrow can be enabled or disabled in the settings.
+
+### Video Library
+
+- Displays video previews in a six-item grid per page.
+- Shows each video's filename and file size.
+- Select a preview to play the video or access its information.
+
+### Playback Modes
+
+Three playback modes are available:
+
+- **Sequential:** Plays videos in order, returning to the beginning after the last video.
+- **Random:** Plays videos in a shuffled order.
+- **Repeat:** Repeats the currently selected video.
+
+### Settings
+
+- Adjust screen brightness.
+- Enable or disable the playback navigation arrow.
+
+## Requirements and Important Notes
+
+- An ESP32-2432S028 Cheap Yellow Display (CYD).
+- A microSD card formatted as FAT32.
+- Videos must be converted to MJPEG format before being copied to the card.
+- Videos must use the `.mjpeg` file extension.
+- Videos must be stored directly inside a folder named `mjpeg` in the root of the microSD card.
+- The player does not support audio playback.
+- A stylus is recommended for more comfortable and accurate touchscreen operation.
 
 ## Flashing the Firmware (Beginner's Guide)
 
@@ -97,9 +115,11 @@ Once the process is complete, your CYD should be ready to run the player!
 
 ## Preparing the microSD Card
 
-Before using the player, format your microSD card with the **FAT32** file system.
+The microSD card must be formatted as **FAT32**.
 
-Create a folder named `mjpeg` in the root directory of the card. Copy all your converted `.mjpeg` video files directly into this folder.
+Create a folder named `mjpeg` in the root directory of the card.
+
+Copy your converted `.mjpeg` videos directly into this folder.
 
 The folder structure should look like this:
 
@@ -108,62 +128,73 @@ microSD/
 └── mjpeg/
     ├── video1.mjpeg
     ├── video2.mjpeg
-    ├── video3.mjpeg
-    └── video4.mjpeg
+    └── video3.mjpeg
 ```
 
 **Important:**
-- The folder name must be exactly `mjpeg`.
-- Video files must be placed directly inside this folder, not in additional subfolders.
-- Only non-empty files with the `.mjpeg` extension are recognized.
-- The current firmware is configured to register up to **2,000 video files**.
+
+- The folder must be named exactly `mjpeg`.
+- Video files must be placed directly inside this folder, not in subfolders.
+- Only files with the `.mjpeg` extension are recognized.
+- Empty video files are ignored.
+
+The firmware is currently configured to register up to **2,000 video files** in the library. This is a configured limit, not a guarantee that every microSD card will perform equally well with that many files.
 
 ## Video Conversion
 
-Videos must be converted to the MJPEG format supported by the player before copying them to the microSD card.
+Videos must be converted to MJPEG format before they can be played.
 
-The original project uses **Video Conversion Studio**, an online conversion tool developed by The Last Outpost Workshop.
+You can use the original creator's [Video Conversion Studio](https://thelastoutpostworkshop.github.io/video_conversion/) to prepare your videos.
 
-[Open Video Conversion Studio](https://thelastoutpostworkshop.github.io/video_conversion/)
-
-Remember that videos are played without sound.
+Remember that this player is designed for video playback without audio.
 
 ## Testing and Known Limitations
 
-The current version has been tested with a small video collection. Some aspects still require further testing.
+The player has been tested with several MJPEG files, including a video of approximately 2 GB.
 
-### Pending Tests
+Current testing includes a library of seven videos.
 
-- **Large video libraries:** Test playback and navigation with a significantly larger number of videos, approaching the configured limit of 2,000 files. So far, testing has been performed with seven videos, including one file approximately 2 GB in size.
-- **Complete sequential playback:** Verify a complete playback cycle, from the first video to the last, and confirm that playback automatically starts again from the beginning. The code is designed to do this, but a full cycle has not yet been confirmed because one of the test videos is approximately 90 minutes long.
+Some tests are still pending:
 
-These tests will help establish the reliability of the player when handling larger collections and extended playback sessions.
+- Testing the library with a much larger number of videos, approaching the configured 2,000-file limit.
+- Completing a full sequential playback cycle to verify that playback returns to the first video after reaching the end of the list.
+- Further testing of random playback with a larger video library.
+
+The project is still evolving, and these limits and behaviours may be refined in future versions.
 
 ## Suggestions and Feedback
 
-Suggestions, feedback and ideas for improving the player are always welcome!
+Suggestions, ideas and feedback are welcome!
 
-If you have ideas for new features, interface improvements or ways to make the player more reliable, feel free to share them through the GitHub repository.
+If you find a bug or have an idea for a new feature, feel free to open an issue in this repository.
 
 ## Credits
 
-This project is based on the original work by **[The Last Outpost Workshop](https://github.com/thelastoutpostworkshop)**.
+### Original Project
 
-- **Original project:** [ESP32-2432S028 Video Player](https://github.com/thelastoutpostworkshop/esp32-2432S028_video_player)
-- **Original creator:** [The Last Outpost Workshop](https://github.com/thelastoutpostworkshop)
-- **Video conversion tool:** [Video Conversion Studio](https://thelastoutpostworkshop.github.io/video_conversion/)
-- **Modifications and extensions:** DMPumuki ([GitHub profile](https://github.com/tancredyo1990-ship-it))
+This project is based on the work of [The Last Outpost Workshop](https://github.com/thelastoutpostworkshop).
+
+Original repository:
+[ESP32-2432S028 Video Player](https://github.com/thelastoutpostworkshop/esp32-2432S028_video_player)
+
+### Video Conversion Tool
+
+[Video Conversion Studio](https://thelastoutpostworkshop.github.io/video_conversion/) by The Last Outpost Workshop.
+
+### Modifications and Extensions
+
+Modifications, new features, interface improvements and testing by [DMPumuki](https://github.com/tancredyo1990-ship-it).
 
 ## Development Acknowledgements
 
-ChatGPT (OpenAI) was used as an AI-assisted development tool during the modification and expansion of the original codebase.
+ChatGPT (OpenAI) was used as an AI assistance tool during development, helping with code implementation, debugging, problem-solving and exploring possible improvements.
 
-It provided assistance with code development, debugging, implementation of new features and technical problem-solving.
-
-Hardware testing, feature decisions and project direction were carried out by DMPumuki.
+Hardware testing, project direction, design decisions and final implementation were carried out by DMPumuki.
 
 ## License
 
-This project is derived from software originally released under the MIT License.
+This project is based on software originally released under the **MIT License** by The Last Outpost Workshop.
 
-Please refer to the original repository and its license for the original project's copyright and licensing terms.
+The original copyright notice and MIT License terms must be retained in accordance with the original license.
+
+Please refer to the [original repository](https://github.com/thelastoutpostworkshop/esp32-2432S028_video_player) for the original project and license information.
