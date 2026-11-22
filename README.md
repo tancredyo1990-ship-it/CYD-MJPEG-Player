@@ -81,6 +81,7 @@ Want to try the player? Getting it onto your CYD is quite simple. You don't need
 
 - An ESP32-2432S028 Cheap Yellow Display (CYD).
 - A USB cable to connect it to your computer.
+- A microSD card formatted as FAT32.
 
 That's it!
 
