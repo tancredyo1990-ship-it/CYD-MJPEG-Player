@@ -1,5 +1,7 @@
 # CYD-MJPEG-Player
-
+<p align="center">
+  <img src="CYD_MJPEG_Avatar.jpg" alt="CYD MJPEG Player" width="600">
+</p>
 An expanded and enhanced version of [The Last Outpost Workshop's ESP32-2432S028 video player](https://github.com/thelastoutpostworkshop/esp32-2432S028_video_player), adding a touch-controlled interface, video library, playback modes and more.
 
 Created and modified by [DMPumuki](https://github.com/tancredyo1990-ship-it).
